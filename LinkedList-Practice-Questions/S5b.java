@@ -1,6 +1,7 @@
 // https://practice.geeksforgeeks.org/problems/reverse-a-linked-list/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
 
-public class S5 {
+//Reverse the Node
+public class S5b {
 
     class Node {
         int data;
