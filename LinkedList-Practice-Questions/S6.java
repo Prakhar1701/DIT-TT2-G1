@@ -20,48 +20,88 @@ public class S6 {
         }
     }
 
-    public boolean isPalindrome(ListNode head) {
+    class Solution {
 
-        int length = 0;
+        public boolean isPalindrome(ListNode head) {
 
-        ListNode t = head;
+            ListNode s = head, f = head, p, n;
 
-        while (t != null) {
-            length++;
-            t = t.next;
-        }
-
-        int m = ((length & 1) == 0) ? (length / 2) : (length / 2) + 1;
-
-        ListNode dummy = new ListNode(-1, head);
-
-        ListNode p = dummy;
-
-        for (int i = 0; i < m; i++) {
-            p = p.next;
-        }
-
-        ListNode c = p.next;
-        ListNode n = p.next;
-
-        while (c != null) {
-            n = n.next;
-            c.next = p;
-            p = c;
-            c = n;
-        }
-
-        ListNode t1 = head;
-        ListNode t2 = p;
-
-        for (int i = 0; i < m; i++) {
-            if (t1.val != t2.val) {
-                return false;
+            while (f != null && f.next != null) {
+                s = s.next;
+                f = f.next.next;
             }
-            t1 = t1.next;
-            t2 = t2.next;
-        }
 
-        return true;
+            p = s;
+            s = s.next;
+            p.next = null;
+
+            while (s != null) {
+                n = s.next;
+                s.next = p;
+                p = s;
+                s = n;
+            }
+
+            f = head;
+            s = p;
+
+            while (s != null) {
+                if (f.val != s.val)
+                    return false;
+                f = f.next;
+                s = s.next;
+            }
+
+            return true;
+        }
     }
+
+    // class Solution {
+
+    // public boolean isPalindrome(ListNode head) {
+
+    // int length = 0;
+
+    // ListNode t = head;
+
+    // while (t != null) {
+    // length++;
+    // t = t.next;
+    // }
+
+    // int m = ((length & 1) == 0) ? (length / 2) : (length / 2) + 1;
+
+    // ListNode dummy = new ListNode(-1, head);
+
+    // ListNode p = dummy;
+
+    // for (int i = 0; i < m; i++) {
+    // p = p.next;
+    // }
+
+    // ListNode c = p.next;
+    // ListNode n = p.next;
+
+    // while (c != null) {
+    // n = n.next;
+    // c.next = p;
+    // p = c;
+    // c = n;
+    // }
+
+    // ListNode t1 = head;
+    // ListNode t2 = p;
+
+    // for (int i = 0; i < m; i++) {
+    // if (t1.val != t2.val) {
+    // return false;
+    // }
+    // t1 = t1.next;
+    // t2 = t2.next;
+    // }
+
+    // return true;
+    // }
+    // }
+
 }
